@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Album</title>
+</head>
+<body>
+	Hello, <span th:text="${session.user.name}"></span> <br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/manage}">Admin Home</a>
+	<a th:if="${session.user.name != 'Admin'}" th:href="@{/explore}">User Home</a>
+	<h3>Add/Edit Album</h3>
+	<form method="post" th:action="@{/albums/save}" th:object="${album}">
+		<input type="hidden" th:field="*{id}"/>
+		Title: <input type="text" th:field="*{title}"/> <br/><br/> 
+		Thumbnail: <input type="text" th:field="*{thumbnail}"/> <br/><br/>
+		<input type="submit" value="Submit"/> <br/><br/>
+	</form>
+</body>
+</html>

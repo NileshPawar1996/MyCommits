@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Manage</title>
+</head>
+<body>
+	Hello, <span th:text="${session.user.name}"></span>
+	<h3>Manage Gaana Music</h3>
+	<a th:href="@{/artists/list}">Artists</a> <br/><br/>
+	<a th:href="@{/albums/list}">Albums</a> <br/><br/>
+	<a th:href="@{/songs/list}">Songs</a> <br/><br/>
+	
+	<br/><a th:href="@{/logout}">Sign Out</a> <br/>
+</body>
+</html>
+

@@ -1,0 +1,14 @@
+.songs-list-container {
+  padding-top: 20px;
+}
+
+.thumbnail {
+  width: 200px;
+
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.table-container {
+  margin-top: 20px;
+}

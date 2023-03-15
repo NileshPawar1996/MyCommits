@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Song</title>
+<script type="text/javascript">
+	function removeArtist(index) {
+		var rowId = 'artist_tr_' + index;
+		var rowEle = document.getElementById(rowId);
+		rowEle.remove();
+	}
+	function submitSong() {
+		var elems = document.querySelectorAll("[name^=artistList]");
+		var i;
+		for (i = 0; i < elems.length; i++)
+			elems[i].name = "artistList[" + i + "].id";
+		var newArtistId = document.getElementById('artist_select').value;
+		if(newArtistId != 0) {
+			var hiddenFieldEle = document.createElement("input");
+			hiddenFieldEle.setAttribute("type", "hidden");
+			hiddenFieldEle.setAttribute("name", "artistList[" + elems.length + "].id");
+			hiddenFieldEle.setAttribute("value", newArtistId);
+			document.querySelector("form").appendChild(hiddenFieldEle);
+		}
+	}
+</script>
+</head>
+<body>
+	Hello, <span th:text="${session.user.name}"></span> <br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/manage}">Admin Home</a>
+	<a th:if="${session.user.name != 'Admin'}" th:href="@{/explore}">User Home</a>
+	<h3>Add/Edit Song</h3>
+	<form method="post" enctype="multipart/form-data" th:action="@{/songs/save}" th:object="${song}" th:onsubmit="|submitSong()|">
+		<input type="hidden" th:field="*{id}"/>
+		Title: <input type="text" th:field="*{title}"/> <br/><br/> 
+		Duration: <input type="text" th:field="*{duration}"/> <br/><br/>
+		File: <input type="file" th:field="*{file}"/> <br/><br/>
+		Album: <select th:field="*{album.id}">
+				<option th:text="'Select Album'" th:value="0" disabled="disabled">
+				<option th:each="al: ${albumList}" th:text="${al.title}" th:value="${al.id}"></option>
+			</select> <br/><br/>
+		Artists: <!-- List Binding = https://www.baeldung.com/thymeleaf-list -->
+			<table id="artist_table">
+				<tr th:id="|artist_tr_${stat.index}|" th:each="ar, stat : ${song.artistList}">
+					<td th:text="${ar.firstName + ' ' + ar.lastName}"></td>
+					<td>
+						<input type="hidden" th:name="|artistList[${stat.index}].id|" th:value="${ar.id}"/>
+						<input type="button" value="Remove artist" th:onclick="|removeArtist(${stat.index})|"/>
+					</td>
+				</tr>
+			</table>
+			<select id="artist_select">
+				<option th:text="'Add Artist'" th:value="0">
+				<option th:each="ar: ${artistList}" th:text="${ar.firstName + ' ' + ar.lastName}" th:value="${ar.id}"></option>
+			</select> <br/><br/>
+		<input type="submit" value="Submit"/> 
+		<br/><br/>
+	</form>
+</body>
+</html>

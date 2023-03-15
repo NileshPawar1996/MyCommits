@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Songs</title>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+	Hello, <span th:text="${session.user.name}"></span> <br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/manage}">Admin Home</a>
+	<a th:if="${session.user.name != 'Admin'}" th:href="@{/explore}">User Home</a>
+	<h3>Songs</h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Duration</th>
+				<th>File</th>
+				<th>Album</th>
+				<th>Artists</th>
+				<th th:if="${playlist != true}">Action</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="s: ${songList}">
+				<td th:text="${s.title}"></td>
+				<td th:text="${s.duration}"></td>
+				<td th:text="${s.file}"></td>
+				<td th:text="${s.album.title}"></td>
+				<td>
+					<ul th:each="ar: ${s.artistList}">
+						<li th:text="${ar.firstName + ' ' + ar.lastName}">
+					</ul>
+				</td>
+				<td th:if="${playlist != true}">
+					<div th:if="${session.user.name == 'Admin'}">
+						<a th:href="@{/songs/edit(id=${s.id})}">Edit</a>
+						<a th:href="@{/songs/delete(id=${s.id})}">Delete</a>
+					</div>
+					<div th:if="${session.user.name != 'Admin'}">
+						<a th:href="@{/songs/addqueue(id=${s.id})}">Add to Queue</a>
+					</div>
+				</td>		
+				<td>
+					<audio controls>
+					  <source th:src="@{|/download/${s.file}|}" type="audio/mpeg">
+					</audio>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/><br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/songs/new}">Add New Song</a>
+</body>
+</html>
+

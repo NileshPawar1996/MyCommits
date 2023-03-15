@@ -1,0 +1,8 @@
+.btn-media {
+  width: 30px;
+  height: 30px;
+}
+
+tr:hover {
+  cursor: pointer;
+}

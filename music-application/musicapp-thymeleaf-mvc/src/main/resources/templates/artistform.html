@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Artist</title>
+</head>
+<body>
+	Hello, <span th:text="${session.user.name}"></span> <br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/manage}">Admin Home</a>
+	<a th:if="${session.user.name != 'Admin'}" th:href="@{/explore}">User Home</a>
+	<h3>Add/Edit Artist</h3>
+	<form method="post" enctype="multipart/form-data" th:action="@{/artists/save}" th:object="${artist}">
+		<input type="hidden" th:field="*{id}"/>
+		First Name: <input type="text" th:field="*{firstName}"/> <br/><br/> 
+		Last Name: <input type="text" th:field="*{lastName}"/> <br/><br/>
+		Thumbnail: <input type="file" th:field="*{thumbnail}"/> <br/><br/>
+			<input type="hidden" name="fileName" th:value="*{thumbnail}"/>
+		Type: <select th:field="*{type}">
+				<option th:text="'Singer'" th:value="'Singer'"></option>
+				<option th:text="'Music'" th:value="'Music'"></option>
+				<option th:text="'Lyricist'" th:value="'Lyricist'"></option>
+			</select> <br/><br/>
+		<input type="submit" value="Submit"/> <br/><br/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Artists</title>
+</head>
+<body>
+	Hello, <span th:text="${session.user.name}"></span> <br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/manage}">Admin Home</a>
+	<a th:if="${session.user.name != 'Admin'}" th:href="@{/explore}">User Home</a>
+	<h3>Artists</h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Thumbnail</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Type</th>
+				<th>Explore</th>
+				<th th:if="${session.user.name == 'Admin'}">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="ar: ${artistList}">
+				<!-- 
+				<td th:text="${ar.thumbnail}"></td>
+				-->
+				<td>
+					<img th:src="@{|/download/${ar.thumbnail}|}" width="64" height="64" th:alt="${ar.thumbnail}"/>
+				</td>
+				<td th:text="${ar.firstName}"></td>
+				<td th:text="${ar.lastName}"></td>
+				<td th:text="${ar.type}"></td>
+				<td>
+					<a th:href="@{/artists/songs(id=${ar.id})}">Songs</a>
+					<a th:href="@{/artists/albums(id=${ar.id})}">Albums</a>
+				</td>
+				<td th:if="${session.user.name == 'Admin'}">
+					<a th:href="@{/artists/edit(id=${ar.id})}">Edit</a>
+					<a th:href="@{/artists/delete(id=${ar.id})}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/><br/>
+	<a  th:if="${session.user.name == 'Admin'}" th:href="@{/artists/new}">Add New Artist</a>
+</body>
+</html>

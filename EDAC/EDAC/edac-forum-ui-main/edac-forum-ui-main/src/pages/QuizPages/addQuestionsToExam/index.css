@@ -1,0 +1,12 @@
+.leftDiv {
+    background-color: rgb(200, 246, 246);
+}
+.rightDiv{
+    background-color: beige;
+}
+.containerDiv{
+    padding: 30px;
+}
+.col{
+    height: 300px;
+}

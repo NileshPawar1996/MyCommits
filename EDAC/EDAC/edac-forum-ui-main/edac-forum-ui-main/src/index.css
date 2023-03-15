@@ -1,0 +1,257 @@
+  * {
+    background: none;
+    user-select: none;
+    --bg-color: whitesmoke;
+    --text-color: #2b2928;
+    --primary-color: blue;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .login-wrap {
+    height: 90vh;
+    display: grid;
+    place-items: center center;
+  }
+
+  main {
+    margin: 2em;
+    max-width: 1050px;
+  }
+
+  .main-wrapper {
+    display: grid;
+    justify-items: stretch;
+    grid-template-columns: 300px 1fr;
+  }
+
+
+  body {
+    font-size: 11pt;
+    background-color: whitesmoke;
+    font-family: 'Nunito sans', 'Segoe UI', ' Roboto', ' Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  .login-wrap {
+    grid-template-columns: 1/-1;
+  }
+
+  .manage-add-btn {
+    background-color: var(--primary-color) !important;
+    color: red !important;
+  }
+
+  .post-prof {
+    border-radius: 5em;
+    height: 10px;
+  }
+
+  .mycard,
+  .comment-wrap {
+    border: 2px solid rgb(237, 237, 242);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 1.2em 1.4em;
+    border-radius: 0.8em;
+    transition: all 0.3s;
+  }
+
+  .mycard:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  }
+
+  .comment-wrap {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .mycomment {
+    padding: 1em 1.4em;
+    border-bottom: 2px solid gainsboro;
+  }
+
+  .mycomment:last-child {
+    border-bottom: none;
+  }
+
+  .comment-input {
+    margin-inline: 1.2em;
+  }
+
+  .mytag {
+    background-color: aquamarine;
+    color: darkslategray;
+    /* border: 1px solid solid darkslategray; */
+    font-weight: 600;
+    font-size: 0.75rem;
+    border-radius: 0.3em;
+    padding: .3em 0.75em;
+  }
+
+  .myshadow {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .myshadow:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  }
+
+  input[type=textbox] {
+    height: 100px;
+  }
+
+  .round {
+    border-radius: 100vh;
+  }
+
+  .loader {
+    width: 1em;
+    height: 1em;
+    border-width: 2px;
+  }
+
+
+  .nav-wrap {
+    padding: 1em;
+    height: 100vh;
+    display: flex;
+  }
+
+  .sidemenu {
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    padding: 0.7em;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 0.8em;
+    flex-wrap: nowrap;
+    overflow-y : scroll;
+  }
+
+  .my-accordian-item {
+    display: block;
+    overflow: hidden;
+    border-radius: 0.4em;
+  }
+
+  .my-accordian-body {
+    flex-direction: column;
+    display: flex;
+    padding-inline-start: 1em;
+  }
+
+  .my-nav-link {
+    transition: all 0.1s;
+    display: flex;
+    gap: .75em;
+    padding: 0.5em 0.8em;
+    border-radius: 0.4em;
+    background: var(--bg-color);
+    border: 2px solid var(--bg-color);
+    font-weight: 500;
+  }
+
+  .my-nav-link:hover {
+    border: 2px solid var(--primary-color);
+    color: var(--bg-color);
+    background: var(--primary-color);
+  }
+
+  .my-nav-active {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+
+  .drop-nav {
+    /* border-radius: 0; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nested-nav-link {
+    margin-block-start: 0.3em;
+    font-size: 0.9em;
+    border-radius: .4em;
+  }
+
+  .feedback-comment-wrap {
+    height: 15em;
+    overflow-y: auto;
+  }
+
+  .feedback-card {
+    color: var(--text-color);
+    width: 45%;
+    min-width: 300px;
+    border: 2px solid rgb(237, 237, 242);
+    border-radius: .4em;
+    text-align: start;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding: 0.8em 1.2em;
+    background-color: ghostwhite;
+  }
+
+  .feedback-card:hover {
+    border: 2px solid blue;
+    color: var(--bg-color);
+    background: blue;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  }
+
+  a {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--text-color);
+  }
+
+  img {
+    background-size: cover;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .user-card img {
+    border-radius: 100vh;
+  }
+
+  .user-card {
+    border: 2px solid rgb(237, 237, 242);
+    border-radius: 0.4em;
+    padding: 0.8em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .user-card div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+  }
+
+  .user-card .name {
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 0;
+  }

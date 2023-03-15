@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Albums</title>
+</head>
+<body>
+	Hello, <span th:text="${session.user.name}"></span> <br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/manage}">Admin Home</a>
+	<a th:if="${session.user.name != 'Admin'}" th:href="@{/explore}">User Home</a>
+	<h3>Albums</h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Thumbnail</th>
+				<th>Title</th>
+				<th>Explore</th>
+				<th th:if="${session.user.name == 'Admin'}">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="al: ${albumList}">
+				<td th:text="${al.thumbnail}"></td>
+				<td th:text="${al.title}"></td>
+				<td>
+					<a th:href="@{/albums/songs(id=${al.id})}">Songs</a>
+				</td>
+				<td th:if="${session.user.name == 'Admin'}">
+					<a th:href="@{/albums/edit(id=${al.id})}">Edit</a>
+					<a th:href="@{/albums/delete(id=${al.id})}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br/><br/>
+	<a th:if="${session.user.name == 'Admin'}" th:href="@{/albums/new}">Add New Album</a>
+	
+</body>
+</html>

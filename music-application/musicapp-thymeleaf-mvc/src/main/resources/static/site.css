@@ -1,0 +1,12 @@
+@charset "ISO-8859-1";
+
+audio {
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+}
+
+ul {
+    list-style: none;
+    display: table-row;
+}
